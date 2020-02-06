@@ -1,0 +1,48 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      a: b
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Cache Node.js modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+      - name: NX Setup
+        shell: bash
+        run: |
+          git fetch origin master
+
+      # Setup
+      - name: Install Dependencies
+        run: npm ci --loglevel=error
+      - name: Build DevKit
+        run: npm run build:devkit
+      - name: Lint affected files
+        run: npm run affected:lint
+      - name: Check formatting
+        run: npm run format:check
+      - name: Run affected unit tests
+        run: npm run affected:test
+
+      # Build
+      - name: Build Test App
+        run: npm run build -- --prod
+      - name: Build Angular Theme
+        run: npm run build theme -- --prod
+      - name: Build Angular Components
+        run: npm run build angular-components -- --prod
