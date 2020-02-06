@@ -5,6 +5,7 @@ on: pull_request
 jobs:
   init:
     runs-on: ubuntu-latest
+    container: pr
 
     steps:
       - uses: actions/checkout@v2
@@ -34,6 +35,7 @@ jobs:
     
   test:
     needs: init
+    container: pr
     runs-on: ubuntu-latest
 
     steps:
@@ -46,6 +48,7 @@ jobs:
 
   build:
     needs: init
+    container: pr
     runs-on: ubuntu-latest
 
     steps:
