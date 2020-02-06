@@ -31,13 +31,13 @@ jobs:
         run: npm ci --loglevel=error
       - name: Build DevKit
         run: npm run build:devkit
-      - name: Cache All
-        uses: actions/cache@v1
-        with:
-          path: ./
-          key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-project-
+#       - name: Cache All
+#         uses: actions/cache@v1
+#         with:
+#           path: ./
+#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.OS }}-project-
     
   test:
     needs: init
@@ -45,13 +45,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Get Cache
-        uses: actions/cache@v1
-        with:
-          path: ./
-          key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-project-
+#       - name: Get Cache
+#         uses: actions/cache@v1
+#         with:
+#           path: ./
+#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.OS }}-project-
 
         # Test
       - name: Content list
@@ -69,13 +69,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Get Cache
-        uses: actions/cache@v1
-        with:
-          path: ./
-          key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.OS }}-project-
+#       - name: Get Cache
+#         uses: actions/cache@v1
+#         with:
+#           path: ./
+#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
+#           restore-keys: |
+#             ${{ runner.OS }}-project-
 
         # Build
       - name: Build Test App
