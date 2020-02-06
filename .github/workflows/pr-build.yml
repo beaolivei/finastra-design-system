@@ -31,12 +31,28 @@ jobs:
         run: npm ci --loglevel=error
       - name: Build DevKit
         run: npm run build:devkit
+      - name: Cache All
+        uses: actions/cache@v1
+        with:
+          path: ./
+          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-project-
     
   test:
     needs: init
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get Cache
+        uses: actions/cache@v1
+        with:
+          path: ./
+          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-project-
+
+        # Test
       - name: Content list
         uses: enricomarino/actions@v2
       - name: Lint affected files
@@ -51,7 +67,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Build
+      - name: Get Cache
+        uses: actions/cache@v1
+        with:
+          path: ./
+          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-project-
+
+        # Build
       - name: Build Test App
         run: npm run build -- --prod
       - name: Build Angular Theme
