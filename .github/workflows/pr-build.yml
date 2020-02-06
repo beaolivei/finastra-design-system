@@ -1,4 +1,4 @@
-name: Pull Request CI
+name: pr ci
 
 on: pull_request
 
@@ -44,4 +44,4 @@ jobs:
       - name: Build Angular Theme
         run: npm run build angular-theme -- --prod
       - name: Build Angular Components
-        run: npm run build angular-components -- --prod
+        run: npm run build angular-components
