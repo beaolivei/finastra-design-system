@@ -1,11 +1,10 @@
 name: pr ci
-
 on: pull_request
 
 jobs:
   init:
     runs-on: ubuntu-latest
-    container: pr
+    
 
     steps:
       - uses: actions/checkout@v2
@@ -35,10 +34,11 @@ jobs:
     
   test:
     needs: init
-    container: pr
     runs-on: ubuntu-latest
 
     steps:
+      - name: Content list
+        uses: enricomarino/actions@v2
       - name: Lint affected files
         run: npm run affected:lint -- --base=origin/master --parallel
       - name: Check formatting
@@ -48,7 +48,6 @@ jobs:
 
   build:
     needs: init
-    container: pr
     runs-on: ubuntu-latest
 
     steps:
