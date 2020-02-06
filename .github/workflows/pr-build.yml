@@ -31,27 +31,6 @@ jobs:
         run: npm ci --loglevel=error
       - name: Build DevKit
         run: npm run build:devkit
-#       - name: Cache All
-#         uses: actions/cache@v1
-#         with:
-#           path: ./
-#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.OS }}-project-
-    
-  test:
-    needs: init
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-#       - name: Get Cache
-#         uses: actions/cache@v1
-#         with:
-#           path: ./
-#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.OS }}-project-
 
         # Test
       - name: Content list
@@ -62,20 +41,6 @@ jobs:
         run: npm run format:check -- --base=origin/master --parallel
       - name: Run affected unit tests
         run: npm run affected:test -- --base=origin/master --parallel
-
-  build:
-    needs: init
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-#       - name: Get Cache
-#         uses: actions/cache@v1
-#         with:
-#           path: ./
-#           key: ${{ runner.OS }}-run-${{ github.run_id }}-${{ hashFiles('package-lock.json') }}
-#           restore-keys: |
-#             ${{ runner.OS }}-project-
 
         # Build
       - name: Build Test App
