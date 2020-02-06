@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ./
-          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.OS }}-run-${{ $GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-project-
     
@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ./
-          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.OS }}-run-${{ $GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-project-
 
@@ -71,7 +71,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: ./
-          key: ${{ runner.OS }}-run-${{ GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.OS }}-run-${{ $GITHUB_RUN_ID }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.OS }}-project-
 
