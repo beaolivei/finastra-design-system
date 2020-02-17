@@ -18,7 +18,10 @@ export class FilterPanelDemoComponent implements OnInit {
     { label: 'Money Movement' },
     { label: 'Static Data' }
   ];
+
+  multiselectTagsSampleData = [{ label: 'API' }, { label: 'SPI', isSelected: true }, { label: 'Service API' }];
   chosenTags: string[] = [];
+  chosenMultiselectTags: string[] = [];
 
   constructor() {}
 
@@ -37,5 +40,9 @@ export class FilterPanelDemoComponent implements OnInit {
 
   updateFilterTags(tags: string[]) {
     this.chosenTags = tags;
+  }
+
+  updateMultiselectTags(tags: string[]) {
+    this.chosenMultiselectTags = tags;
   }
 }

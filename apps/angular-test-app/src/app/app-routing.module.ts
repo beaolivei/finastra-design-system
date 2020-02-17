@@ -20,6 +20,7 @@ import { PopoverModule } from '@ffdc/uxg-angular-components/popover';
 import { FilterTreeModule } from '@ffdc/uxg-angular-components/filter/filter-tree';
 import { FilterTagsModule } from '@ffdc/uxg-angular-components/filter/filter-tags';
 import { WizardModule } from '@ffdc/uxg-angular-components/wizard';
+import { MultiselectTagsModule } from '@ffdc/uxg-angular-components';
 
 import { MaterialModule } from './material.module';
 import { GlobalSearchDemoComponent } from './components/global-search-demo/global-search-demo.component';
@@ -68,7 +69,8 @@ import { UiElementsDemoComponent } from './components/ui-elements-demo/ui-elemen
     FilterTagsModule,
     FilterTreeModule,
     VectorMapModule,
-    WizardModule
+    WizardModule,
+    MultiselectTagsModule
   ],
   declarations: [
     HomeComponent,
